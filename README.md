@@ -4,6 +4,8 @@ A starter Jik workspace for GitHub Codespaces.
 
 This repository is meant to be opened in GitHub Codespaces or another devcontainer-compatible environment. The container installs the Jik compiler and syncs the matching `examples/` directory automatically.
 
+For the Jik compiler, language source, and releases, see [jik-lang/jik](https://github.com/jik-lang/jik).
+
 ## [Try Jik in GitHub Codespaces](https://codespaces.new/jik-lang/try-jik?quickstart=1)
 
 After the Codespace starts, run:
