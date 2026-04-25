@@ -1,0 +1,20 @@
+{
+  "name": "Try Jik",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "remoteEnv": {
+    "PATH": "/opt/jik:${containerEnv:PATH}",
+    "JIK_CC": "gcc"
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "workbench.startupEditor": "none"
+      }
+    }
+  },
+  "postCreateCommand": "bash .devcontainer/scripts/post-create.sh",
+  "postAttachCommand": "bash .devcontainer/scripts/post-attach.sh"
+}

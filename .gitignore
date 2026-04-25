@@ -1,0 +1,11 @@
+*.c
+*.o
+*.obj
+*.exe
+jik
+obj/
+release/
+/artifacts/
+/examples/
+/.devcontainer/artifacts/
+/.devcontainer/extensions/*.vsix

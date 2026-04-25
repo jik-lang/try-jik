@@ -1,0 +1,4 @@
+func main():
+    // Edit this file to try Jik in Codespaces.
+    println("Hello, Jik!")
+end
