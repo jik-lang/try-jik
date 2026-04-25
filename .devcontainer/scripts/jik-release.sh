@@ -33,14 +33,25 @@ ensure_vsix_asset() {
 
 sync_examples_from_tag() {
     local tmpdir archive_root
+    local -a extracted_dirs
 
     tmpdir="$(mktemp -d)"
     download_file "$JIK_REPO_ARCHIVE_URL" "$tmpdir/repo.tar.gz"
-    archive_root="$(tar -tzf "$tmpdir/repo.tar.gz" | head -n1 | cut -d/ -f1)"
 
     tar -xzf "$tmpdir/repo.tar.gz" -C "$tmpdir"
+    shopt -s nullglob
+    extracted_dirs=("$tmpdir"/*/)
+    shopt -u nullglob
 
-    if [ ! -d "$tmpdir/$archive_root/examples" ]; then
+    if [ "${#extracted_dirs[@]}" -eq 0 ]; then
+        echo "failed to determine extracted archive root for ${JIK_REPO}@${JIK_VERSION}" >&2
+        rm -rf "$tmpdir"
+        return 1
+    fi
+
+    archive_root="${extracted_dirs[0]%/}"
+
+    if [ ! -d "$archive_root/examples" ]; then
         echo "examples/ not found in ${JIK_REPO}@${JIK_VERSION}" >&2
         rm -rf "$tmpdir"
         return 1
@@ -48,6 +59,6 @@ sync_examples_from_tag() {
 
     rm -rf "$JIK_WORKSPACE_DIR/examples"
     mkdir -p "$JIK_WORKSPACE_DIR/examples"
-    cp -a "$tmpdir/$archive_root/examples"/. "$JIK_WORKSPACE_DIR/examples/"
+    cp -a "$archive_root/examples"/. "$JIK_WORKSPACE_DIR/examples/"
     rm -rf "$tmpdir"
 }
