@@ -5,6 +5,7 @@ RUN apt-get update \
         ca-certificates \
         curl \
         gcc \
+        git \
         tar \
     && rm -rf /var/lib/apt/lists/*
 

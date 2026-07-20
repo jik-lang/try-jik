@@ -5,7 +5,8 @@
   },
   "remoteEnv": {
     "PATH": "/opt/jik:${containerEnv:PATH}",
-    "JIK_CC": "gcc"
+    "JIK_CC": "gcc",
+    "JIK_PKG_PATH": "${containerEnv:HOME}/.local/share/jik-packages"
   },
   "customizations": {
     "vscode": {
